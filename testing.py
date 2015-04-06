@@ -15,10 +15,6 @@ class testing_cv(unittest.TestCase):
             test_output = cv.convert_none_to_string(test_input)
             self.assertTrue(test_output == ['empty', 1, 'a', True])
 
-        def test_get_id_columns_pass(self):
-            columns = cv.get_id_columns("NO Blocks")
-            self.assertTrue(columns  == ['Production licence', 'Company longname'])
-
         def test_get_id_column_indexes_pass(self):
             test_input_list = [['Row 1: Element 1', 'Row 1: Element 2', 'Row1: Element 3'],
                                 ['Row 2', 'Row 2', 'Row2'],
