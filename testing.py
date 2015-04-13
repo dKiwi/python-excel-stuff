@@ -46,9 +46,8 @@ class testing_cv(unittest.TestCase):
             test_row = ["element1", "element2", "element3"]
             self.assertTrue(cv.get_row_primary_key_elements(test_row,[0,2]) == [u'element1', u'element3'])
 
-if __name__ == '__cv__':
-    unittest.cv()
-
+if __name__ == '__main__':
+    unittest.main()
 
 
 
