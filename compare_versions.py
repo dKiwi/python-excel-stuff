@@ -49,7 +49,9 @@ def join_primary_key_elements(elements):
 
     Param:
     :elements - list"""
-    return '_'.join([element for element in elements])
+    return '_'.join([str(element) if isinstance(element, int)
+                     or isinstance(element, float)
+                     else element for element in elements])
 
 
 def convert_none_to_string(elements):
