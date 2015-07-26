@@ -34,16 +34,6 @@ def return_headers(elements):
     return elements[0]
 
 
-def encode_as_utf(elements):
-    """Encoding each string element of the list as utf-8"""
-    new_list = []
-    for row in elements:
-        new_list.append([element.encode('utf-8', 'replace')
-                         if isinstance(element, str)
-                         else element for element in row])
-    return new_list
-
-
 def join_primary_key_elements(elements):
     """Returns elements as string (joined by _)
 
@@ -209,10 +199,8 @@ def compare_excel_files(previous_file, current_file, id_columns):
     previous_workbook = ExcelFile(previous_file)
     current_workbook = ExcelFile(current_file)
     # Workbook objects to nested lists
-    previous_dataset_decoded = return_list(previous_workbook.worksheet)
-    current_dataset_decoded = return_list(current_workbook.worksheet)
-    previous_dataset = encode_as_utf(previous_dataset_decoded)
-    current_dataset = encode_as_utf(current_dataset_decoded)
+    previous_dataset = return_list(previous_workbook.worksheet)
+    current_dataset = return_list(current_workbook.worksheet)
     # add primary keys, i.e. concatenated combination of multiple columns,
     # as last elements of each record
     id_column_indexes = get_id_column_indexes(previous_dataset, id_columns)
@@ -239,3 +227,5 @@ def compare_excel_files(previous_file, current_file, id_columns):
                            removed, added, rows_to_analyze, changes)
     print "Output: %s" %output
     return
+
+compare_excel_files('test_file_1.xlsx', 'test_file_2.xlsx', ['col1', 'col2'])
