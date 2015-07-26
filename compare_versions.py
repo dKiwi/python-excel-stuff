@@ -79,7 +79,7 @@ def get_row_primary_key_elements(row, indexes):
 
     Params:
     :row - list
-    : indexes - list
+    :indexes - list
 
     Example:
     row = ['col1', 'col2', 'col3', 'col4']
