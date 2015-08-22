@@ -184,7 +184,7 @@ def write_to_file(previous_version, current_version, removed,
     return os.path.join(work_dir, file_name)
 
 
-def compare_excel_files(previous_file, current_file, id_columns):
+def compare_excel_files(previous_file, current_file, *argv):
     """
     Performs a comparison of two Excel files and saves output in
     the directory of the script.
@@ -192,7 +192,7 @@ def compare_excel_files(previous_file, current_file, id_columns):
     Params:
     :previous_file: string, file path
     :current_file: string, file path
-    :param id_columns: list, column names
+    *argv: column names
 
     Example:
     compare_excel_files(r'test_file_1.xlsx', r'test_file_2.xlsx',['col1', 'col2'])
@@ -205,6 +205,7 @@ def compare_excel_files(previous_file, current_file, id_columns):
     current_dataset = return_list(current_workbook.worksheet)
     # add primary keys, i.e. concatenated combination of multiple columns,
     # as last elements of each record
+    id_columns = [arg for arg in argv]
     id_column_indexes = get_id_column_indexes(previous_dataset, id_columns)
     for row in previous_dataset:
         row.append(join_primary_key_elements(get_row_primary_key_elements(row, id_column_indexes)))
@@ -229,3 +230,4 @@ def compare_excel_files(previous_file, current_file, id_columns):
                            removed, added, rows_to_analyze, changes)
     print "Output: %s" %output
     return
+
