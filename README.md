@@ -9,7 +9,7 @@ Use: Detecting changes between two versions of an Excel file.<br />
 
 Example: <br />
 import compare_versions as cv <br />
-cv.compare_excel_files(r'test_file_1.xlsx', r'test_file_2.xlsx',['col1', 'col2']) <br />
+cv.compare_excel_files('test_file_1.xlsx', 'test_file_2.xlsx','col1', 'col2') <br />
 
 Output: Excel file with the following worksheets:<br />
         - previous version<br />
